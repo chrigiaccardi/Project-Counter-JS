@@ -12,6 +12,9 @@ Progetto effettuato per il test finale della sezione JavaScript di Start 2 Impac
 - Decrementa il contatore con il pulsante "-"
 - Reset del contatore a zero
 
+## Prova il Contatore
+Clicca qui [Contatore](https://chrigiaccardi.github.io/Project-Counter-JS/)
+
 
 ## Tecnologie usate
 
