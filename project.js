@@ -7,7 +7,10 @@ title.textContent = "Progetto JS - Counter"
 
 // h2 Display
 const display = document.createElement("h2")
-const numberDisplay = document.createElement("span")
+
+// dispositivo
+let dispositivo = document.createElement("div")
+dispositivo.className = "device"
 
 // Bottoni + e -
 const buttonContainer = document.createElement("div")
@@ -20,27 +23,21 @@ btnMinus.textContent = "Meno (-)"
 btnMinus.className = "rosso"
 
 const btnReset = document.createElement("button")
-btnReset.textContent = "Reset"
+btnReset.textContent = "Reset (0)"
 
 // Append Child
-container.appendChild(display)
-container.appendChild(buttonContainer)
-display.appendChild(numberDisplay)
+container.appendChild(dispositivo)
+dispositivo.appendChild(display)
+dispositivo.appendChild(buttonContainer)
 buttonContainer.appendChild(btnPlus)
 buttonContainer.appendChild(btnMinus)
 buttonContainer.appendChild(btnReset)
 
 // Inizializzazione e funzione
 let i = 0;
-display.textContent = `Il numero è ${i}`
+display.textContent = `Il numero è 0`
 function aggiornaDisplay() {
-    display.textContent = i;
-    numberDisplay.classList.remove("scrittaRossa", "scrittaVerde")
-    if (i < 0) {
-    numberDisplay.classList.add = "scrittaRossa"
-} else if (i > 0) {
-    numberDisplay.classList.add = "scrittaVerde"
-}}
+    display.textContent = `Il numero è ${i}`}
 
 
 // Eventi
