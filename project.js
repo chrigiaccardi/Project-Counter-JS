@@ -1,5 +1,9 @@
 let container = document.querySelector(".container")
 
+// Inizializzazione
+let i = 0
+let savedTable = null
+
 // h1 Titolo
 const title = document.createElement("h1")
 container.appendChild(title)
@@ -12,8 +16,9 @@ const display = document.createElement("h2")
 let dispositivo = document.createElement("div")
 dispositivo.className = "device"
 
-// Bottoni + e -
+// Bottoni
 const buttonContainer = document.createElement("div")
+
 const btnPlus = document.createElement("button")
 btnPlus.textContent = "Più (+)"
 btnPlus.className = "verde"
@@ -25,16 +30,31 @@ btnMinus.className = "rosso"
 const btnReset = document.createElement("button")
 btnReset.textContent = "Reset (0)"
 
-// Append Child
+const btnPlus5 = document.createElement("button")
+btnPlus5.textContent = "+5"
+btnPlus5.className = "verdeChiaro"
+
+const btnSave = document.createElement("button")
+btnSave.textContent = "Salva"
+btnSave.className = "blu"
+
+const btnMinus5 = document.createElement("button")
+btnMinus5.textContent = "-5"
+btnMinus5.className = "rossoChiaro"
+
+// AppendChild Dispositivo
 container.appendChild(dispositivo)
 dispositivo.appendChild(display)
 dispositivo.appendChild(buttonContainer)
 buttonContainer.appendChild(btnPlus)
-buttonContainer.appendChild(btnMinus)
 buttonContainer.appendChild(btnReset)
+buttonContainer.appendChild(btnMinus)
+buttonContainer.appendChild(btnPlus5)
+buttonContainer.appendChild(btnSave)
+buttonContainer.appendChild(btnMinus5)
 
-// Inizializzazione e funzione
-let i = 0;
+
+// Funzione
 display.textContent = `Il numero è 0`
 function aggiornaDisplay() {
     display.textContent = `Il numero è ${i}`}
@@ -45,14 +65,81 @@ btnPlus.addEventListener("click", button => {
     i++;
     aggiornaDisplay()
 })
+
 btnMinus.addEventListener("click", button => {
     i--;
     aggiornaDisplay()
 
 })
+
 btnReset.addEventListener("click", button => {
     i = 0;
     aggiornaDisplay()
 
 })
+
+btnPlus5.addEventListener("click", button => {
+    i += 5;
+    aggiornaDisplay()
+
+})
+
+btnMinus5.addEventListener("click", button => {
+    i -= 5;
+    aggiornaDisplay()
+
+})
+
+btnSave.addEventListener("click", () => {
+    if (!savedTable) {
+        savedTable = document.createElement("table")
+        savedTable.className = "tabella"
+
+        const header = document.createElement("tr")
+        const th1 = document.createElement("th")
+        th1.textContent = "Valore"
+        const th2 = document.createElement("th")
+        th2.textContent = "Descrizione"
+        const th3 = document.createElement("th")
+        th3.textContent = ""
+        header.appendChild(th1)
+        header.appendChild(th2)
+        header.appendChild(th3)
+        savedTable.appendChild(header)
+
+        container.appendChild(savedTable)
+        
+    };
+    // Tabella Saved
+    const row = document.createElement("tr")
+
+    const valueCell = document.createElement("td")
+    valueCell.textContent = i
+
+    const inputCell = document.createElement("td")
+    const input = document.createElement("input")
+    input.type = "text"
+    input.placeholder = "Scrivi Descrizione..."
+    const removeCell = document.createElement("td")
+
+    const btnRemove = document.createElement("button")
+    btnRemove.textContent = "Elimina"
+    btnRemove.addEventListener("click", () => {
+        row.remove();
+        if (savedTable.rows.length === 1) {
+            savedTable.remove()
+            savedTable = null
+        }
+    });
+
+    // AppendChild Tabella
+    removeCell.appendChild(btnRemove)
+    inputCell.appendChild(input)
+    row.appendChild(valueCell)
+    row.appendChild(inputCell)
+    row.appendChild(removeCell)
+    savedTable.appendChild(row)
+});
+
+
 
