@@ -17,3 +17,7 @@ Progetto effettuato per il test finale della sezione JavaScript di Start 2 Impac
 - HTML dinamico generato tramite script
 - CSS per lo stile
 
+## Meta
+Christian Giaccardi - [chrigiaccardi@gmail.com](mailto:chrigiaccardi@gmail.com)
+Mi puoi trovare su [LinkedIn](https://it.linkedin.com/in/christian-giaccardi-753085180?trk=public_profile_browsemap_profile-result-card_result-card_full-click) e [Instagram](https://www.instagram.com/chrigiaccardi/)
+
