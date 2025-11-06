@@ -7,8 +7,10 @@ title.textContent = "Progetto JS - Counter"
 
 // h2 Display
 const display = document.createElement("h2")
+const numberDisplay = document.createElement("span")
 
 // Bottoni + e -
+const buttonContainer = document.createElement("div")
 const btnPlus = document.createElement("button")
 btnPlus.textContent = "Più (+)"
 btnPlus.className = "verde"
@@ -22,19 +24,24 @@ btnReset.textContent = "Reset"
 
 // Append Child
 container.appendChild(display)
-container.appendChild(btnPlus)
-container.appendChild(btnMinus)
-container.appendChild(btnReset)
+container.appendChild(buttonContainer)
+display.appendChild(numberDisplay)
+buttonContainer.appendChild(btnPlus)
+buttonContainer.appendChild(btnMinus)
+buttonContainer.appendChild(btnReset)
 
 // Inizializzazione e funzione
 let i = 0;
 display.textContent = `Il numero è ${i}`
-function aggiornaDisplay() { display.textContent = `Il numero è ${i}` }
-if (i < 0) {
-    i.className = "scrittaRossa"
-} else {
-    i.className = "scrittaVerde"
-}
+function aggiornaDisplay() {
+    display.textContent = i;
+    numberDisplay.classList.remove("scrittaRossa", "scrittaVerde")
+    if (i < 0) {
+    numberDisplay.classList.add = "scrittaRossa"
+} else if (i > 0) {
+    numberDisplay.classList.add = "scrittaVerde"
+}}
+
 
 // Eventi
 btnPlus.addEventListener("click", button => {
