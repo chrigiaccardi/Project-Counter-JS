@@ -1,6 +1,6 @@
 # ⏱️ Progetto JS - Counter
 
-Questo è un semplice contatore realizzato con JavaScript, che permette di incrementare, decrementare e resettare un valore numerico dinamicamente.
+Questo è un semplice contatore realizzato con JavaScript, che permette di incrementare, decrementare e resettare un valore numerico dinamicamente. <br>
 Grazie a questo "Counter" potrai contare qualsiasi cosa tu voglia: click, squat, bugie dette ecc..
 
 
@@ -9,14 +9,16 @@ Progetto effettuato per il test finale della sezione JavaScript di Start 2 Impac
 ## 📸 Anteprima
 
 **Contatore: stato iniziale**
+
 ![Anteprima "Counter"](./img/counter1.png)
 
 ---
 
 **Contatore: tabella salvataggi valori**
+
 ![Anteprima "Counter"](./img/counter2.png)
 
-## 💻Funzionalità
+## 💻 Funzionalità
 
 - Incrementa il contatore con il pulsante "+"
 - Incrementa il contatore di 5 con il pulsante "+ 5"
@@ -40,8 +42,8 @@ Progetto effettuato per il test finale della sezione JavaScript di Start 2 Impac
 - JavaScript (DOM manipulation)
 
 ## 🔗 Autore - Link
-Christian Giaccardi - [chrigiaccardi@gmail.com](mailto:chrigiaccardi@gmail.com)
-GitHub [GitHub](https://github.com/chrigiaccardi)
+Christian Giaccardi - [chrigiaccardi@gmail.com](mailto:chrigiaccardi@gmail.com) <br>
+GitHub - [chrigiaccardi](https://github.com/chrigiaccardi)
 
 ---
 

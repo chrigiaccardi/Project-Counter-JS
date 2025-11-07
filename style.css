@@ -20,6 +20,7 @@ margin: 0;
     
     
 }
+
 .btnDispositivo{
     border: none;
     border-radius: 10px;
@@ -29,48 +30,62 @@ margin: 0;
     font-size: 1.25rem;
     width: 7rem;
 }
+
 .rosso{
     background-color: red;
     color: white;
-       &:hover{
-        background-color: rgb(213, 0, 0);
-        }
+    
 }
+
+.rosso:hover{
+        background-color: rgb(213, 0, 0);
+}
+
 .verde{
     background-color: green;
     color: white;
-     &:hover{
-        background-color: rgb(0, 86, 0);
-        }
 }
+
+.verde:hover{
+        background-color: rgb(0, 86, 0);
+}
+
 .verdeScuro{
     background-color:seagreen;
     color: white;
-     &:hover{
-        background-color: rgb(51, 131, 115);
-        }
 }
+
+.verdeScuro:hover{
+    background-color: rgb(51, 131, 115);
+}
+
 .marrone{
     background-color: maroon;
     color: white;
-     &:hover{
-        background-color: rgb(86, 0, 0);
-        }
 }
+
+.marrone:hover{
+    background-color: rgb(86, 0, 0);
+}
+
 .blu{
     background-color: rgb(23, 81, 255);
     color: white;
-     &:hover{
-        background-color: rgb(23,81,213);
-        }
 }
+
+.blu:hover{
+    background-color: rgb(23,81,213);
+}
+
 .grigio{
     background-color: rgb(137, 137, 137);
     color: white;
-     &:hover{
-        background-color: rgb(119, 119, 119);
-        }
 }
+
+.grigio:hover{
+    background-color: rgb(119, 119, 119);
+}
+
 .device{
     background-color: rgb(233, 233, 233);
     margin-top: 100px;
@@ -78,6 +93,7 @@ margin: 0;
     border: none;
     border-radius: 20px;
 }
+
 .tabella{
     border: 2px solid black;
     border-radius: 20px;
@@ -87,6 +103,7 @@ margin: 0;
     border-collapse: collapse;
     overflow: hidden;
 }
+
 .btnRemove{
     border-radius: 10px;
     background-color: red;
@@ -94,26 +111,28 @@ margin: 0;
     color: white;
     border: none;
     width: 7rem;
-    &:hover{
-        background-color: rgb(213, 0, 0);
-        }
 }
+
+.btnRemove:hover{
+    background-color: rgb(213, 0, 0);
+}
+
 th, td {
     padding: 0.75rem 1rem;
     text-align: left;
     font-size: 1rem;
-  }
+}
 
-  th {
+th {
     background-color: rgb(23,81,255);
     color: white;
-  }
+}
 
 input{
     width: 100%;
     padding: 0.4rem;
     font-size: 0.95rem;
     border: 1px solid rgb(188, 188, 188);
-    border-radius: 10px
+    border-radius: 10px;
 
 }
