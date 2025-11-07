@@ -1,7 +1,9 @@
 *,*::before, *::after{
     box-sizing: border-box;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    letter-spacing: 0.05rem;
 }
+
 body {
 padding: 0;
 margin: 0;
@@ -16,12 +18,11 @@ margin: 0;
     
     
 }
-button{
+.btnDispositivo{
     border: none;
-    border-radius: 50%;
-    margin: 20px;
-    width: 100px;
-    height: 100px;
+    border-radius: 10px;
+    margin: 1rem;
+    padding: 0.5rem;
     cursor: pointer;
     font-size: 1.25rem;
 }
@@ -45,13 +46,49 @@ button{
     background-color: rgb(23, 81, 255);
     color: white;
 }
+.grigio{
+    background-color: rgb(137, 137, 137);
+    color: white;
+}
 .device{
-    background-color: rgb(196, 196, 196);
+    background-color: rgb(233, 233, 233);
     margin-top: 100px;
     padding: 30px;
-    border: 2px solid black;
-    border-radius: 50px;
+    border: none;
+    border-radius: 20px;
 }
 .tabella{
-    background-color: aquamarine;
+    border: 2px solid black;
+    border-radius: 20px;
+    margin-top: 2rem;
+    background-color: rgb(233, 233, 233);
+    padding: 0.75rem;
+    border-collapse: collapse;
+    overflow: hidden;
+}
+.btnRemove{
+    border-radius: 10px;
+    background-color: red;
+    padding: 0.50rem;
+    color: white;
+    border: none;
+}
+th, td {
+    padding: 0.75rem 1rem;
+    text-align: left;
+    font-size: 1rem;
+  }
+
+  th {
+    background-color: rgb(23,81,255);
+    color: white;
+  }
+
+input{
+    width: 100%;
+    padding: 0.4rem;
+    font-size: 0.95rem;
+    border: 1px solid rgb(188, 188, 188);
+    border-radius: 10px
+
 }

@@ -14,33 +14,34 @@ const display = document.createElement("h2")
 
 // dispositivo
 let dispositivo = document.createElement("div")
-dispositivo.className = "device"
+dispositivo.classList.add("device")
 
 // Bottoni
 const buttonContainer = document.createElement("div")
 
 const btnPlus = document.createElement("button")
 btnPlus.textContent = "Più (+)"
-btnPlus.className = "verde"
+btnPlus.classList.add("verde", "btnDispositivo")
 
 const btnMinus = document.createElement("button")
 btnMinus.textContent = "Meno (-)"
-btnMinus.className = "rosso"
+btnMinus.classList.add("rosso", "btnDispositivo")
 
 const btnReset = document.createElement("button")
 btnReset.textContent = "Reset (0)"
+btnReset.classList.add("grigio","btnDispositivo")
 
 const btnPlus5 = document.createElement("button")
 btnPlus5.textContent = "+5"
-btnPlus5.className = "verdeChiaro"
+btnPlus5.classList.add("verdeChiaro", "btnDispositivo")
 
 const btnSave = document.createElement("button")
 btnSave.textContent = "Salva"
-btnSave.className = "blu"
+btnSave.classList.add("blu", "btnDispositivo")
 
 const btnMinus5 = document.createElement("button")
 btnMinus5.textContent = "-5"
-btnMinus5.className = "rossoChiaro"
+btnMinus5.classList.add("rossoChiaro", "btnDispositivo")
 
 // AppendChild Dispositivo
 container.appendChild(dispositivo)
@@ -55,9 +56,9 @@ buttonContainer.appendChild(btnMinus5)
 
 
 // Funzione
-display.textContent = `Il numero è 0`
+display.textContent = `Numero: 0`
 function aggiornaDisplay() {
-    display.textContent = `Il numero è ${i}`}
+    display.textContent = `Numero: ${i}`}
 
 
 // Eventi
@@ -93,7 +94,7 @@ btnMinus5.addEventListener("click", button => {
 btnSave.addEventListener("click", () => {
     if (!savedTable) {
         savedTable = document.createElement("table")
-        savedTable.className = "tabella"
+        savedTable.classList.add("tabella")
 
         const header = document.createElement("tr")
         const th1 = document.createElement("th")
@@ -124,6 +125,7 @@ btnSave.addEventListener("click", () => {
 
     const btnRemove = document.createElement("button")
     btnRemove.textContent = "Elimina"
+    btnRemove.classList.add("btnRemove")
     btnRemove.addEventListener("click", () => {
         row.remove();
         if (savedTable.rows.length === 1) {
