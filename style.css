@@ -15,6 +15,8 @@ margin: 0;
     align-content: center;
     min-height: 100vh;
     text-align: center;
+    background: #eed7ae;
+    background: radial-gradient(circle, rgba(238, 215, 174, 1) 0%, rgba(148, 187, 233, 1) 100%);    
     
     
 }
@@ -25,30 +27,49 @@ margin: 0;
     padding: 0.5rem;
     cursor: pointer;
     font-size: 1.25rem;
+    width: 7rem;
 }
 .rosso{
     background-color: red;
     color: white;
+       &:hover{
+        background-color: rgb(213, 0, 0);
+        }
 }
 .verde{
     background-color: green;
     color: white;
+     &:hover{
+        background-color: rgb(0, 86, 0);
+        }
 }
-.verdeChiaro{
-    background-color: rgb(91, 161, 91);
+.verdeScuro{
+    background-color:seagreen;
     color: white;
+     &:hover{
+        background-color: rgb(51, 131, 115);
+        }
 }
-.rossoChiaro{
-    background-color: rgb(255, 116, 116);
+.marrone{
+    background-color: maroon;
     color: white;
+     &:hover{
+        background-color: rgb(86, 0, 0);
+        }
 }
 .blu{
     background-color: rgb(23, 81, 255);
     color: white;
+     &:hover{
+        background-color: rgb(23,81,213);
+        }
 }
 .grigio{
     background-color: rgb(137, 137, 137);
     color: white;
+     &:hover{
+        background-color: rgb(119, 119, 119);
+        }
 }
 .device{
     background-color: rgb(233, 233, 233);
@@ -72,6 +93,10 @@ margin: 0;
     padding: 0.50rem;
     color: white;
     border: none;
+    width: 7rem;
+    &:hover{
+        background-color: rgb(213, 0, 0);
+        }
 }
 th, td {
     padding: 0.75rem 1rem;

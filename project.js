@@ -33,7 +33,7 @@ btnReset.classList.add("grigio","btnDispositivo")
 
 const btnPlus5 = document.createElement("button")
 btnPlus5.textContent = "+5"
-btnPlus5.classList.add("verdeChiaro", "btnDispositivo")
+btnPlus5.classList.add("verdeScuro", "btnDispositivo")
 
 const btnSave = document.createElement("button")
 btnSave.textContent = "Salva"
@@ -41,7 +41,7 @@ btnSave.classList.add("blu", "btnDispositivo")
 
 const btnMinus5 = document.createElement("button")
 btnMinus5.textContent = "-5"
-btnMinus5.classList.add("rossoChiaro", "btnDispositivo")
+btnMinus5.classList.add("marrone", "btnDispositivo")
 
 // AppendChild Dispositivo
 container.appendChild(dispositivo)
@@ -51,8 +51,9 @@ buttonContainer.appendChild(btnPlus)
 buttonContainer.appendChild(btnReset)
 buttonContainer.appendChild(btnMinus)
 buttonContainer.appendChild(btnPlus5)
-buttonContainer.appendChild(btnSave)
 buttonContainer.appendChild(btnMinus5)
+buttonContainer.appendChild(btnSave)
+
 
 
 // Funzione
