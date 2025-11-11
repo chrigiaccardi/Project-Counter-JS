@@ -153,8 +153,3 @@ display.textContent = `Numero: 0`
                     row.append(valueCell,inputCell,removeCell)
                     savedTable.appendChild(row)
             });
-
-
-
-
-    
