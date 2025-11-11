@@ -24,12 +24,15 @@ const buttonContainer = document.createElement("div")
     function creaBottone(text,classe,ariaLabel,titolo) {
         const button = document.createElement("button")
         button.textContent = text
-        button.classList.add(classe, "btnDispositivo")
         button.setAttribute("aria-label", ariaLabel)
         button.title = titolo
+        if (text === "Elimina") {
+            button.classList.add(classe)
+        } else {
+            button.classList.add(classe,"btnDispositivo")
+        }
         return button
     }
-
 
     // 6.1 Bottone Più (+)
     const btnPlus = creaBottone("Più (+)","verde","Incrementa il contatore di uno","Incrementa il contatore di uno")    
@@ -87,47 +90,51 @@ function resettaValore() {
     // 9.5 Click Bottone Meno 5
     btnMinus5.addEventListener("click", button => { aggiornaValore(-5)})
 
-    // 9.6 Click Bottone Salva - Creazione Tabella
-    btnSave.addEventListener("click", () => {
+    // 9.6 Click Bottone Salva - Creazione Tabella 
+            // Funzione Creazione Celle Tabella
+            function celleTabella(tag,text,type,placeholder) {
+                const element = document.createElement(tag)
+                if (tag === "input") {
+                    element.type = type
+                    element.placeholder = placeholder
+                } else {
+                    element.textContent = text
+                }
+                return element
+            }
+
+        btnSave.addEventListener("click", () => {
         if (!savedTable) {
             savedTable = document.createElement("table")
             savedTable.classList.add("tabella")
 
-            // Funzioni Creazione Tabella
-
+         
+            
             // 9.6.1 Creazione Elementi Tabella
-            const header = document.createElement("tr")
-            const th1 = document.createElement("th")
-            th1.textContent = "Valore"
-            const th2 = document.createElement("th")
-            th2.textContent = "Descrizione"
-            const th3 = document.createElement("th")
-            th3.textContent = ""
+            const header = celleTabella("tr")
+            const th1 = celleTabella("th","Valore")
+            const th2 = celleTabella("th","Descrizione")
+            const th3 = celleTabella("th","Elimina Riga")
 
             // 9.6.2 Append Child Tabella
             header.append(th1,th2,th3)
             savedTable.appendChild(header)
             container.appendChild(savedTable)
-            
         };
 
             // 9.6.3 Creazione Riga Tabella
-            const row = document.createElement("tr")
+            const row = celleTabella("tr")
 
             // 9.6.4 Creazione Cella Valore
-            const valueCell = document.createElement("td")
-            valueCell.textContent = i
+            const valueCell = celleTabella("td",i)
 
             // 9.6.5 Creazione Cella Input
-            const inputCell = document.createElement("td")
-            const input = document.createElement("input")
-            input.type = "text"
-            input.placeholder = "Scrivi Descrizione..."
-            const removeCell = document.createElement("td")
+            const inputCell = celleTabella("td")
+            const input = celleTabella("input","","text","Scrivi Una Descrizione...")
+            const removeCell = celleTabella("td")
 
             // 9.6.6 Creazione Bottone Elimina Riga
             const btnRemove = creaBottone("Elimina", "btnRemove", "Elimina questo valore salvato", "Elimina questo valore salvato")
-            btnRemove.classList.remove("btnDispositivo")
             btnRemove.addEventListener("click", () => {
                 row.remove();
                 if (savedTable.rows.length === 1) {
