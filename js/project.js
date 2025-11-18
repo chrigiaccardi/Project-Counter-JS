@@ -21,24 +21,79 @@ dispositivo.classList.add("device")
 const buttonContainer = document.createElement("div")
 
     // 6.1 Funzione Creazione Bottoni
-    function creaBottone(text,classe,ariaLabel,titolo) {
-        const button = document.createElement("button")
-        button.textContent = text
-        button.setAttribute("aria-label", ariaLabel)
-        button.title = titolo
-        if (text === "Elimina") {
-            button.classList.add(classe)
-        } else {
-            button.classList.add(classe,"btnDispositivo")
-        }
-        return button
-    }
+    // function creaBottone(text,classe,ariaLabel,titolo) {
+    //     const button = document.createElement("button")
+    //     button.textContent = text
+    //     button.setAttribute("aria-label", ariaLabel)
+    //     button.title = titolo
+    //     if (text === "Elimina") {
+    //         button.classList.add(classe)
+    //     } else {
+    //         button.classList.add(classe,"btnDispositivo")
+    //     }
+    //     return button
+    // }
 
     // 6.2 Bottone Più (+)
-    const btnPlus = creaBottone("Più (+)","verde","Incrementa il contatore di uno","Incrementa il contatore di uno")    
+// const btnPlus = creaBottone("Più (+)","verde","Incrementa il contatore di uno","Incrementa il contatore di uno")    
+    
+function creaElemento(tag, options = {}) {
+    const element = document.createElement(tag)
+    if (options.text) {element.textContent = options.text}
+    if (options.classes) {element.classList.add(...options.classes)}
+    if (options.attributes) {
+        for (const [chiave, valore] of Object.entries(options.attributes)) {
+            element.setAttribute(chiave,valore)
+        }
+    }
+    if (options.events) {
+        for (const [event, handler] of Object.entries(options.events)) {
+            element.addEventListener(event,handler)
+        }
+    }
+    if (options.children) {element.appendChild(options.children)}
+    return element
+}
+function creaBottone(tag, contenuto, classes, ariaLabel, titolo, evento) {
+    return creaElemento(tag, {
+        text: contenuto,
+        classes: classes,
+        attributes: {
+            "aria-label": ariaLabel,
+            "title": titolo
+        },
+        events: {
+            "click": evento
+        }
+        
+    });
+}
+
+const btnPlus = creaBottone(
+    "button",
+    "Più (+)",
+    ["verde", "btnDispositivo"],
+    "Incrementa il contatore di uno",
+    "Incrementa il contatore di uno",
+    () => aggiornaValore(1)
+)    
+const btnMinus = creaBottone(
+    "button",
+    "Meno (-)",
+    ["rosso", "btnDispositivo"],
+    "Decrementa il contatore di uno",
+    "Decrementa il contatore di uno",
+    () => aggiornaValore(-1)
+)
+
+container.appendChild(dispositivo)
+dispositivo.appendChild(buttonContainer)
+buttonContainer.append(btnPlus,btnMinus)
+
+
 
     // 6.3 Bottone Meno (-)
-    const btnMinus = creaBottone("Meno (-)","rosso","Decrementa il contatore di uno","Decrementa il contatore di uno")
+ 
 
     // 6.4 Bottone Reset (0)
     const btnReset = creaBottone("Reset (0)","grigio","Resetta il valore a zero","Resetta il valore a zero")
@@ -56,7 +111,7 @@ const buttonContainer = document.createElement("div")
 // 7.0 AppendChild Dispositivo
 container.appendChild(dispositivo)
 dispositivo.append(display,buttonContainer)
-buttonContainer.append(btnPlus,btnReset,btnMinus,btnPlus5,btnMinus5,btnSave)
+// buttonContainer.append(btnPlus,btnReset,btnMinus,btnPlus5,btnMinus5,btnSave)
 
 // 8.0 Funzioni Dispositivo
 display.textContent = `Numero: 0`
@@ -81,7 +136,7 @@ display.textContent = `Numero: 0`
 // 9.0 Eventi
 
     // 9.1 Click Bottone Più
-    btnPlus.addEventListener("click", button => { aggiornaValore(1)})
+    // btnPlus.addEventListener("click", button => { aggiornaValore(1)})
 
     // 9.2 Click Bottone Meno
     btnMinus.addEventListener("click", button => { aggiornaValore(-1)})
@@ -153,3 +208,40 @@ display.textContent = `Numero: 0`
                     row.append(valueCell,inputCell,removeCell)
                     savedTable.appendChild(row)
             });
+
+// function creaElemento(tag, options = {}) {
+//     const element = document.createElement(tag)
+//     if (options.text) {element.textContent = options.text}
+//     if (options.classes) {element.classList.add(...options.classes)}
+//     if (options.attributes) {
+//         for (const [chiave, valore] of Object.entries(options.attributes)) {
+//             element.setAttribute(chiave,valore)
+//         }
+//     }
+//     if (options.events) {
+//         for (const [event, handler] of Object.entries(options.events)) {
+//             element.addEventListener(event,handler)
+//         }
+//     }
+//     if (options.children) {element.appendChild(options.children)}
+//     return element
+// }
+// function creaBottone(tag, contenuto, classe, ariaLabel, titolo, figlio, evento) {
+//     return creaElemento(tag, {
+//         text: contenuto,
+//         classes: [classe],
+//         attributes: {
+//             "aria-label": ariaLabel,
+//             "title": titolo
+//         },
+//         children: figlio,
+//         events: {
+//             "click": evento
+//         }
+//     });
+// }
+
+
+
+
+// const btnPlus = creaBottone("button","Più (+)", "verde", "Incrementa il contatore di uno", "Incrementa il contatore di uno","",() => aggiornaValore(1))    
