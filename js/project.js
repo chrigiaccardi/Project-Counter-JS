@@ -5,40 +5,10 @@ let container = document.querySelector(".container")
 let i = 0
 let savedTable = null
 
-// 3.0 h1 Titolo
-const title = document.createElement("h1")
-container.appendChild(title)
-title.textContent = "Progetto JS - Counter"
-
-// 4.0 h2 Display
-const display = document.createElement("h2")
-
-// 5.0 dispositivo
-let dispositivo = document.createElement("div")
-dispositivo.classList.add("device")
-
-// 6.0 Bottoni
-const buttonContainer = document.createElement("div")
-
-    // 6.1 Funzione Creazione Bottoni
-    // function creaBottone(text,classe,ariaLabel,titolo) {
-    //     const button = document.createElement("button")
-    //     button.textContent = text
-    //     button.setAttribute("aria-label", ariaLabel)
-    //     button.title = titolo
-    //     if (text === "Elimina") {
-    //         button.classList.add(classe)
-    //     } else {
-    //         button.classList.add(classe,"btnDispositivo")
-    //     }
-    //     return button
-    // }
-
-    // 6.2 Bottone Più (+)
-// const btnPlus = creaBottone("Più (+)","verde","Incrementa il contatore di uno","Incrementa il contatore di uno")    
-    
+// 3.0 Funzioni Generiche
 function creaElemento(tag, options = {}) {
     const element = document.createElement(tag)
+    if (options.padre) {options.padre.appendChild(element)}
     if (options.text) {element.textContent = options.text}
     if (options.classes) {element.classList.add(...options.classes)}
     if (options.attributes) {
@@ -51,58 +21,94 @@ function creaElemento(tag, options = {}) {
             element.addEventListener(event,handler)
         }
     }
-    if (options.children) {element.appendChild(options.children)}
+    
     return element
-}
-function creaBottone(tag, contenuto, classes, ariaLabel, titolo, evento) {
+};
+
+function creaBottone(tag, contenuto, classes, ariaLabel, titolo, evento, padreElemento) {
     return creaElemento(tag, {
         text: contenuto,
         classes: classes,
         attributes: {
             "aria-label": ariaLabel,
             "title": titolo
-        },
-        events: {
+        }, events: {
             "click": evento
-        }
-        
+        }, padre: padreElemento,
     });
-}
+};
 
-const btnPlus = creaBottone(
-    "button",
-    "Più (+)",
-    ["verde", "btnDispositivo"],
+// 4.0 h1 Titolo
+const title = creaElemento("h1", { padre: container, text: "Progetto JS - Counter"});
+
+// 5.0 h2 Display
+const display = creaElemento("h2")
+
+// 6.0 dispositivo
+let dispositivo = creaElemento("div", {padre: container, classes: ["device"]})
+// dispositivo.classList.add("device")
+
+// 7.0 Bottoni
+const buttonContainer = creaElemento("div", { padre: dispositivo })
+
+const btnPlus = creaBottone("button",
+    "Più (+)", ["verde", "btnDispositivo"],
     "Incrementa il contatore di uno",
     "Incrementa il contatore di uno",
-    () => aggiornaValore(1)
-)    
+    () => aggiornaValore(1),
+    buttonContainer
+);    
 const btnMinus = creaBottone(
     "button",
     "Meno (-)",
     ["rosso", "btnDispositivo"],
     "Decrementa il contatore di uno",
     "Decrementa il contatore di uno",
-    () => aggiornaValore(-1)
-)
+    () => aggiornaValore(-1),
+    buttonContainer
+);
 
-container.appendChild(dispositivo)
-dispositivo.appendChild(buttonContainer)
-buttonContainer.append(btnPlus,btnMinus)
+const btnReset = creaBottone(
+    "button",
+    "Reset (0)",
+    ["grigio", "btnDispositivo"],
+    "Resetta il valore a zero",
+    "Resetta il valore a zero",
+    () => resettaValore(),
+    buttonContainer
+);
 
+const btnPlus5 = creaBottone(
+    "button",
+    "+5",
+    ["verdeScuro", "btnDispositivo"],
+    "Incrementa il contatore di cinque",
+    "Incrementa il contatore di cinque",
+    () => aggiornaValore(5),
+    buttonContainer
+);
+// const btnSave = creaBottone(
+//     "button",
+//     "Salva",
+//     ["blu", "btnDispositivo"],
+//     "Salva il valore",
+//     "Salva il valore",
+//     () => aggiornaValore(5),
+//     buttonContainer
+// );
+// const btnPlus5 = creaBottone(
+//     "button",
+//     "+5",
+//     ["verdeScuro", "btnDispositivo"],
+//     "Incrementa il contatore di cinque",
+//     "Incrementa il contatore di cinque",
+//     () => aggiornaValore(5),
+//     buttonContainer
+// );
 
-
-    // 6.3 Bottone Meno (-)
- 
-
-    // 6.4 Bottone Reset (0)
-    const btnReset = creaBottone("Reset (0)","grigio","Resetta il valore a zero","Resetta il valore a zero")
-
-    // 6.5 Bottone Più 5 (+5)
-    const btnPlus5 = creaBottone("+5","verdeScuro","Incrementa il contatore di cinque","Incrementa il contatore di cinque")
 
     // 6.6 Bottone Salva Valore
-    const btnSave = creaBottone("Salva","blu","Salva il valore","Salva il valore")
+    // const btnSave = creaBottone("Salva","blu","Salva il valore","Salva il valore")
 
     // 6.7 Bottone Meno 5 (-5)
     const btnMinus5 = creaBottone("-5","marrone","Decrementa il contatore di cinque","Decrementa il contatore di cinque")
