@@ -3,67 +3,107 @@ let container = document.querySelector(".container");
 
 // 2.0 Inizializzazione
 let i = 0;
-let savedTable = null;
+let tabellaSalva = null;
 
 // 3.0 Funzioni Generiche
-function creaElemento(tag, options = {}) {
-    const element = document.createElement(tag)
-    if (options.padre) {options.padre.appendChild(element)}
-    if (options.text) {element.textContent = options.text}
-    if (options.classes) {element.classList.add(...options.classes)}
-    if (options.attributes) {
-        for (const [chiave, valore] of Object.entries(options.attributes)) {
-            element.setAttribute(chiave,valore)
+    // 3.1 Funzione Crea Elemento
+    function creaElemento(tag, options = {}) {
+        const element = document.createElement(tag)
+        if (options.padre) {options.padre.appendChild(element)}
+        if (options.text) {element.textContent = options.text}
+        if (options.classi) {element.classList.add(...options.classi)}
+        if (options.attributi) {
+            for (const [chiave, valore] of Object.entries(options.attributi)) {
+                element.setAttribute(chiave,valore)
+            }
         }
+        if (options.eventi) {
+            for (const [event, handler] of Object.entries(options.eventi)) {
+                element.addEventListener(event,handler)
+            }
+        }    
+        return element
+    };
+
+    // 3.2 Funzione Crea Bottone
+    function creaBottone(tag, contenuto, classi, ariaLabel, titolo, evento, padreElemento) {
+        return creaElemento(tag, {
+            text: contenuto,
+            classi: classi,
+            attributi: {
+                "aria-label": ariaLabel,
+                "title": titolo
+            }, eventi: {
+                "click": evento
+            }, padre: padreElemento,
+        });
+    };
+
+    // 3.3 Funzione Crea Cella Tabella
+    function creaCella(tag, contenuto, padreElemento) {
+        return creaElemento(tag, {
+            text: contenuto,
+            padre: padreElemento,
+        })
     }
-    if (options.events) {
-        for (const [event, handler] of Object.entries(options.events)) {
-            element.addEventListener(event,handler)
-        }
-    }    
-    return element
-};
 
-function creaBottone(tag, contenuto, classes, ariaLabel, titolo, evento, padreElemento) {
-    return creaElemento(tag, {
-        text: contenuto,
-        classes: classes,
-        attributes: {
-            "aria-label": ariaLabel,
-            "title": titolo
-        }, events: {
-            "click": evento
-        }, padre: padreElemento,
-    });
-};
+    // 3.4 Funzione Crea Input
+    function creaInput(tag, contenuto, tipo, placeholder, padreElemento) {
+        return creaElemento(tag, {
+            text: contenuto,
+            attributi: {
+                "type": tipo,
+                "placeholder": placeholder
+            }, padre: padreElemento,
+            
+        })
+    }
 
-function creaCella(tag, contenuto, tipo, placeholder, padreElemento) {
-    return creaElemento(tag, {
-        text: contenuto,
-        attributes: {
-            "type": tipo,
-            "placeholder": placeholder
-        }, padre: padreElemento,
+    // 3.5 Funzione Bottone Salva
+        function bottoneSalva() {
+            
+            // 3.5.1 Creazione Tabella
+            if (!tabellaSalva) {
+                tabellaSalva = creaElemento("table", { classi: ["tabella"], padre: container })
+                const header = creaCella("tr", "", tabellaSalva)
+                const th1 = creaCella("th", "Valore", header)
+                const th2 = creaCella("th", "Descrizione", header)
+                const th3 = creaCella("th", "Elimina Riga", header)
+            }
+            // 3.5.2 Creazione Righe Tabella    
+            const riga = creaCella("tr", "", tabellaSalva);
+            
+            // 3.5.3 Creazione Celle Tabella
+            const cellaValore = creaCella("td", i, riga);
+            const cellaInput = creaCella("td", "", riga);
+            const cellaElimina = creaCella("td", "", riga);
+
+            // 3.5.4 Creazione Input
+            const input = creaInput("input", "", "text", "Scrivi Una Descrizione...", cellaInput)
+            
+            // 3.5.5 Funzione Elimina Riga
+            function eliminaRiga() {
+                    riga.remove();
+                    if (tabellaSalva.rows.length === 1) {
+                        tabellaSalva.remove()
+                        tabellaSalva = null
+                        }
+                };
+
+            // 3.5.6 Creazione Bottone Elimina Riga
+            const btnElimina = creaBottone(
+                "button",
+                "Elimina",
+                ["btnElimina"],
+                "Elimina questo valore salvato",
+                "Elimina questo valore salvato",
+                () => eliminaRiga(),
+                cellaElimina
+            );
         
-    })
-}
+    };
 
-function bottoneSalva() {
-    if (!savedTable) {
-        savedTable = creaElemento("table", { classes: ["tabella"], padre: container })
-        const header = creaCella("tr", {padre: savedTable})
-        const th1 = creaCella("th", "Valore",{padre: header})
-        const th2 = creaCella("th", "Descrizione",{padre: header})
-        const th3 = creaCella("th", "Elimina Riga",{padre: header})
-    }
-    const row = creaCella("tr","",savedTable });
-    const valueCell = creaCella("td", i,"", row);
-    const inputCell = creaCella("td","","",row);
-    const input = creaCella("input","","text", "Scrivi Una Descrizione...",inputCell)
-
-}
-
-// 8.0 Funzioni Dispositivo
+// 4.0 Funzioni Dispositivo
     // 8.1 Aggiorna Display
     function aggiornaDisplay() {
         display.textContent = `Numero: ${i}`
@@ -82,99 +122,60 @@ function bottoneSalva() {
     }
 
 // 4.0 h1 Titolo
-const title = creaElemento("h1", {text: "Progetto JS - Counter", padre: container});
+const titolo = creaElemento("h1", {text: "Progetto JS - Counter", padre: container});
 
 // 6.0 dispositivo
-let dispositivo = creaElemento("div", { classes: ["device"], padre: container });
+let dispositivo = creaElemento("div", { classi: ["dispositivo"], padre: container });
 
 // 5.0 h2 Display
 const display = creaElemento("h2", { padre: dispositivo });
 display.textContent = `Numero: 0`
 
 // 7.0 Bottoni
-const buttonContainer = creaElemento("div", { padre: dispositivo });
+const containerBtn = creaElemento("div", { padre: dispositivo });
 
-const btnPlus = creaBottone("button",
+const btnPiu = creaBottone("button",
     "Più (+)", ["verde", "btnDispositivo"],
     "Incrementa il contatore di uno",
     "Incrementa il contatore di uno",
     () => aggiornaValore(1),
-    buttonContainer,
+    containerBtn,
 );    
-const btnMinus = creaBottone(
-    "button",
-    "Meno (-)",
-    ["rosso", "btnDispositivo"],
+const btnMeno = creaBottone("button",
+    "Meno (-)", ["rosso", "btnDispositivo"],
     "Decrementa il contatore di uno",
     "Decrementa il contatore di uno",
     () => aggiornaValore(-1),
-    buttonContainer
+    containerBtn
 );
 
-const btnReset = creaBottone(
-    "button",
-    "Reset (0)",
-    ["grigio", "btnDispositivo"],
+const btnReset = creaBottone("button",
+    "Reset (0)", ["grigio", "btnDispositivo"],
     "Resetta il valore a zero",
     "Resetta il valore a zero",
     () => resettaValore(),
-    buttonContainer
+    containerBtn
 );
 
-const btnPlus5 = creaBottone(
-    "button",
-    "+5",
-    ["verdeScuro", "btnDispositivo"],
+const btnPiu5 = creaBottone("button",
+    "+5", ["verdeScuro", "btnDispositivo"],
     "Incrementa il contatore di cinque",
     "Incrementa il contatore di cinque",
     () => aggiornaValore(5),
-    buttonContainer
+    containerBtn
 );
-const btnSave = creaBottone(
-    "button",
-    "Salva",
-    ["blu", "btnDispositivo"],
+const btnSalva = creaBottone("button",
+    "Salva", ["blu", "btnDispositivo"],
     "Salva il valore",
     "Salva il valore",
     () => bottoneSalva(),
-    buttonContainer
+    containerBtn
 );
 
-const btnMinus5 = creaBottone(
-    "button",
-    "-5",
-    ["marrone", "btnDispositivo"],
+const btnMeno5 = creaBottone("button",
+    "-5", ["marrone", "btnDispositivo"],
     "Decrementa il contatore di cinque",
     "Decrementa il contatore di cinque",
     () => aggiornaValore(-5),
-    buttonContainer
+    containerBtn
 );
-
-
-    //                 // 9.6.2.3 Creazione Riga Tabella
-    //                 const row = celleTabella("tr")
-
-    //                 // 9.6.2.4 Creazione Cella Valore
-    //                 const valueCell = celleTabella("td",i)
-
-    //                 // 9.6.2.5 Creazione Cella Input
-    //                 const inputCell = celleTabella("td")
-    //                 const input = celleTabella("input","","text","Scrivi Una Descrizione...")
-    //                 const removeCell = celleTabella("td")
-
-    //                 // 9.6.2.6 Creazione Bottone Elimina Riga
-    //                 const btnRemove = creaBottone("Elimina", "btnRemove", "Elimina questo valore salvato", "Elimina questo valore salvato")
-    //                 btnRemove.addEventListener("click", () => {
-    //                     row.remove();
-    //                     if (savedTable.rows.length === 1) {
-    //                         savedTable.remove()
-    //                         savedTable = null
-    //                     }
-    //                 });
-
-    //                 // 9.6.2.7 AppendChild Celle alla tabella
-    //                 removeCell.appendChild(btnRemove)
-    //                 inputCell.appendChild(input)
-    //                 row.append(valueCell,inputCell,removeCell)
-    //                 savedTable.appendChild(row)
-    //         });
