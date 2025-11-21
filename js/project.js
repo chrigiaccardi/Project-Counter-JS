@@ -27,6 +27,12 @@ let tabellaSalva = null;
 
     // 3.2 Funzione Crea Bottone
     function creaBottone(tag, contenuto, classi, ariaLabel, titolo, evento, padreElemento) {
+        let padreCella;
+        if (contenuto === "Elimina") {
+            padreCella = padreElemento;
+            } else {
+            padreCella = containerBtn;
+        };
         return creaElemento(tag, {
             text: contenuto,
             classi: classi,
@@ -35,7 +41,7 @@ let tabellaSalva = null;
                 "title": titolo
             }, eventi: {
                 "click": evento
-            }, padre: padreElemento,
+            }, padre: padreCella,
         });
     };
 
@@ -98,84 +104,83 @@ let tabellaSalva = null;
                 "Elimina questo valore salvato",
                 "Elimina questo valore salvato",
                 () => eliminaRiga(),
-                cellaElimina
+                cellaElimina,
             );
-        
-    };
+        };
 
 // 4.0 Funzioni Dispositivo
-    // 8.1 Aggiorna Display
+    // 4.1 Aggiorna Display
     function aggiornaDisplay() {
         display.textContent = `Numero: ${i}`
-    }
+    };
 
-    // 8.2 Aggiorna Valore
+    // 4.2 Aggiorna Valore
     function aggiornaValore(valore) {
         i += valore;
         aggiornaDisplay()
-    }
+    };
 
-    // 8.3 Resetta Valore
+    // 4.3 Resetta Valore
     function resettaValore() {
         i = 0;
         aggiornaDisplay()
-    }
+    };
 
-// 4.0 h1 Titolo
+// 5.0 h1 Titolo
 const titolo = creaElemento("h1", {text: "Progetto JS - Counter", padre: container});
 
 // 6.0 dispositivo
 let dispositivo = creaElemento("div", { classi: ["dispositivo"], padre: container });
 
-// 5.0 h2 Display
+// 7.0 h2 Display
 const display = creaElemento("h2", { padre: dispositivo });
 display.textContent = `Numero: 0`
 
-// 7.0 Bottoni
-const containerBtn = creaElemento("div", { padre: dispositivo });
+// 8.0 Bottoni
 
-const btnPiu = creaBottone("button",
-    "Più (+)", ["verde", "btnDispositivo"],
-    "Incrementa il contatore di uno",
-    "Incrementa il contatore di uno",
-    () => aggiornaValore(1),
-    containerBtn,
-);    
-const btnMeno = creaBottone("button",
-    "Meno (-)", ["rosso", "btnDispositivo"],
-    "Decrementa il contatore di uno",
-    "Decrementa il contatore di uno",
-    () => aggiornaValore(-1),
-    containerBtn
-);
+    // 8.1 Creazione Container Bottoni
+    const containerBtn = creaElemento("div", { padre: dispositivo });
+    
+    // 8.2 Creazione Bottone Più
+    const btnPiu = creaBottone("button",
+        "Più (+)", ["verde", "btnDispositivo"],
+        "Incrementa il contatore di uno",
+        "Incrementa il contatore di uno",
+        () => aggiornaValore(1)
+    );    
+    // 8.3 Creazione Bottone Meno
+    const btnMeno = creaBottone("button",
+        "Meno (-)", ["rosso", "btnDispositivo"],
+        "Decrementa il contatore di uno",
+        "Decrementa il contatore di uno",
+        () => aggiornaValore(-1)
+    );
+    // 8.4 Creazione Bottone Reset
+    const btnReset = creaBottone("button",
+        "Reset (0)", ["grigio", "btnDispositivo"],
+        "Resetta il valore a zero",
+        "Resetta il valore a zero",
+        () => resettaValore()
+    );
+    // 8.5 Creazione Bottone Piu 5
+    const btnPiu5 = creaBottone("button",
+        "+5", ["verdeScuro", "btnDispositivo"],
+        "Incrementa il contatore di cinque",
+        "Incrementa il contatore di cinque",
+        () => aggiornaValore(5)
+    );
 
-const btnReset = creaBottone("button",
-    "Reset (0)", ["grigio", "btnDispositivo"],
-    "Resetta il valore a zero",
-    "Resetta il valore a zero",
-    () => resettaValore(),
-    containerBtn
-);
-
-const btnPiu5 = creaBottone("button",
-    "+5", ["verdeScuro", "btnDispositivo"],
-    "Incrementa il contatore di cinque",
-    "Incrementa il contatore di cinque",
-    () => aggiornaValore(5),
-    containerBtn
-);
-const btnSalva = creaBottone("button",
-    "Salva", ["blu", "btnDispositivo"],
-    "Salva il valore",
-    "Salva il valore",
-    () => bottoneSalva(),
-    containerBtn
-);
-
-const btnMeno5 = creaBottone("button",
-    "-5", ["marrone", "btnDispositivo"],
-    "Decrementa il contatore di cinque",
-    "Decrementa il contatore di cinque",
-    () => aggiornaValore(-5),
-    containerBtn
-);
+    // 8.6 Creazione Bottone Salva
+    const btnSalva = creaBottone("button",
+        "Salva", ["blu", "btnDispositivo"],
+        "Salva il valore",
+        "Salva il valore",
+        () => bottoneSalva()
+    );
+    // 8.7 Creazione Bottone Meno 5
+    const btnMeno5 = creaBottone("button",
+        "-5", ["marrone", "btnDispositivo"],
+        "Decrementa il contatore di cinque",
+        "Decrementa il contatore di cinque",
+        () => aggiornaValore(-5)
+    );
