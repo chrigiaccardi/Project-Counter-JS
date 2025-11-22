@@ -8,21 +8,21 @@ let tabellaSalva = null;
 // 3.0 Funzioni Generiche
     // 3.1 Funzione Crea Elemento
     function creaElemento(tag, options = {}) {
-        const element = document.createElement(tag)
-        if (options.padre) {options.padre.appendChild(element)}
-        if (options.text) {element.textContent = options.text}
-        if (options.classi) {element.classList.add(...options.classi)}
+        const element = document.createElement(tag);
+        if (options.padre) { options.padre.appendChild(element) };
+        if (options.text !== undefined) { element.textContent = options.text };
+        if (options.classi) { element.classList.add(...options.classi) };
         if (options.attributi) {
             for (const [chiave, valore] of Object.entries(options.attributi)) {
                 element.setAttribute(chiave,valore)
-            }
-        }
+            };
+        };
         if (options.eventi) {
             for (const [event, handler] of Object.entries(options.eventi)) {
                 element.addEventListener(event,handler)
-            }
-        }    
-        return element
+            };
+        };
+        return element;
     };
 
     // 3.2 Funzione Crea Bottone
@@ -51,7 +51,7 @@ let tabellaSalva = null;
             text: contenuto,
             padre: padreElemento,
         })
-    }
+    };
 
     // 3.4 Funzione Crea Input
     function creaInput(tag, contenuto, tipo, placeholder, padreElemento) {
@@ -63,19 +63,20 @@ let tabellaSalva = null;
             }, padre: padreElemento,
             
         })
-    }
+    };
 
     // 3.5 Funzione Bottone Salva
         function bottoneSalva() {
             
             // 3.5.1 Creazione Tabella
             if (!tabellaSalva) {
-                tabellaSalva = creaElemento("table", { classi: ["tabella"], padre: container })
-                const header = creaCella("tr", "", tabellaSalva)
-                const th1 = creaCella("th", "Valore", header)
-                const th2 = creaCella("th", "Descrizione", header)
-                const th3 = creaCella("th", "Elimina Riga", header)
-            }
+                tabellaSalva = creaElemento("table", { classi: ["tabella"], padre: container });
+                const header = creaCella("tr", "", tabellaSalva);
+                const th1 = creaCella("th", "Valore", header);
+                const th2 = creaCella("th", "Descrizione", header);
+                const th3 = creaCella("th", "Elimina Riga", header);
+            };
+
             // 3.5.2 Creazione Righe Tabella    
             const riga = creaCella("tr", "", tabellaSalva);
             
@@ -85,7 +86,7 @@ let tabellaSalva = null;
             const cellaElimina = creaCella("td", "", riga);
 
             // 3.5.4 Creazione Input
-            const input = creaInput("input", "", "text", "Scrivi Una Descrizione...", cellaInput)
+            const input = creaInput("input", "", "text", "Scrivi Una Descrizione...", cellaInput);
             
             // 3.5.5 Funzione Elimina Riga
             function eliminaRiga() {
@@ -94,7 +95,7 @@ let tabellaSalva = null;
                         tabellaSalva.remove()
                         tabellaSalva = null
                         }
-                };
+            };
 
             // 3.5.6 Creazione Bottone Elimina Riga
             const btnElimina = creaBottone(
@@ -148,6 +149,7 @@ display.textContent = `Numero: 0`
         "Incrementa il contatore di uno",
         () => aggiornaValore(1)
     );    
+    
     // 8.3 Creazione Bottone Meno
     const btnMeno = creaBottone("button",
         "Meno (-)", ["rosso", "btnDispositivo"],
@@ -155,6 +157,7 @@ display.textContent = `Numero: 0`
         "Decrementa il contatore di uno",
         () => aggiornaValore(-1)
     );
+    
     // 8.4 Creazione Bottone Reset
     const btnReset = creaBottone("button",
         "Reset (0)", ["grigio", "btnDispositivo"],
@@ -162,6 +165,7 @@ display.textContent = `Numero: 0`
         "Resetta il valore a zero",
         () => resettaValore()
     );
+
     // 8.5 Creazione Bottone Piu 5
     const btnPiu5 = creaBottone("button",
         "+5", ["verdeScuro", "btnDispositivo"],
@@ -177,6 +181,7 @@ display.textContent = `Numero: 0`
         "Salva il valore",
         () => bottoneSalva()
     );
+    
     // 8.7 Creazione Bottone Meno 5
     const btnMeno5 = creaBottone("button",
         "-5", ["marrone", "btnDispositivo"],
