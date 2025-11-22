@@ -32,8 +32,8 @@ Progetto effettuato per il test finale della sezione JavaScript di Start 2 Impac
 
 ## 🧩 Prova il Contatore Online
 
-[Clicca qui per provare il **Contatore**](https://chrigiaccardi.github.io/Project-Counter-JS/)
-
+[Clicca qui per provare il **Contatore**](https://project-counter-js.netlify.app/)
+Progetto caricato online con Netlify
 
 ## 🛠️ Tecnologie usate
 
