@@ -28,14 +28,18 @@ let tabellaSalva = null;
     // 3.2 Funzione Crea Bottone
     function creaBottone(tag, contenuto, classi, ariaLabel, titolo, evento, padreElemento) {
         let padreCella;
+        let classeBtn;
         if (contenuto === "Elimina") {
             padreCella = padreElemento;
+            classeBtn = classi;
             } else {
             padreCella = containerBtn;
+            classeBtn = [classi,"btnDispositivo"];
+
         };
         return creaElemento(tag, {
             text: contenuto,
-            classi: classi,
+            classi: classeBtn,
             attributi: {
                 "aria-label": ariaLabel,
                 "title": titolo
@@ -144,7 +148,7 @@ display.textContent = `Numero: 0`
     
     // 8.2 Creazione Bottone Più
     const btnPiu = creaBottone("button",
-        "Più (+)", ["verde", "btnDispositivo"],
+        "Più (+)", ["verde"],
         "Incrementa il contatore di uno",
         "Incrementa il contatore di uno",
         () => aggiornaValore(1)
@@ -152,7 +156,7 @@ display.textContent = `Numero: 0`
     
     // 8.3 Creazione Bottone Meno
     const btnMeno = creaBottone("button",
-        "Meno (-)", ["rosso", "btnDispositivo"],
+        "Meno (-)", ["rosso"],
         "Decrementa il contatore di uno",
         "Decrementa il contatore di uno",
         () => aggiornaValore(-1)
@@ -160,7 +164,7 @@ display.textContent = `Numero: 0`
     
     // 8.4 Creazione Bottone Reset
     const btnReset = creaBottone("button",
-        "Reset (0)", ["grigio", "btnDispositivo"],
+        "Reset (0)", ["grigio"],
         "Resetta il valore a zero",
         "Resetta il valore a zero",
         () => resettaValore()
@@ -168,7 +172,7 @@ display.textContent = `Numero: 0`
 
     // 8.5 Creazione Bottone Piu 5
     const btnPiu5 = creaBottone("button",
-        "+5", ["verdeScuro", "btnDispositivo"],
+        "+5", ["verdeScuro"],
         "Incrementa il contatore di cinque",
         "Incrementa il contatore di cinque",
         () => aggiornaValore(5)
@@ -176,7 +180,7 @@ display.textContent = `Numero: 0`
 
     // 8.6 Creazione Bottone Salva
     const btnSalva = creaBottone("button",
-        "Salva", ["blu", "btnDispositivo"],
+        "Salva", ["blu"],
         "Salva il valore",
         "Salva il valore",
         () => bottoneSalva()
@@ -184,7 +188,7 @@ display.textContent = `Numero: 0`
     
     // 8.7 Creazione Bottone Meno 5
     const btnMeno5 = creaBottone("button",
-        "-5", ["marrone", "btnDispositivo"],
+        "-5", ["marrone"],
         "Decrementa il contatore di cinque",
         "Decrementa il contatore di cinque",
         () => aggiornaValore(-5)
